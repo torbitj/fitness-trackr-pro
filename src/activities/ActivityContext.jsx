@@ -1,25 +1,30 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { getActivities } from "../api/activities";
 
 const ActivityContext = createContext();
 
-export const ActivityProvider = ({children}) => {
+export const ActivityProvider = ({ children }) => {
+  const [activities, setActivities] = useState([]);
   
-  const [error, setError] = useState();
-
   const syncActivities = async () => {
     const data = await getActivities();
     setActivities(data);
   };
 
-  const tryDelete = async () => {
-    setError(null);
 
-    try {
-      await deleteActivity(token, activity.id);
-      syncActivities();
-    } catch (e) {
-      setError(e.message);
-    }
-  };
+  useEffect(() => {
+    syncActivities();
+  }, []);
 
+  const value = { activities, syncActivities }
+  
+  return <ActivityContext.Provider value={value}>{children}</ActivityContext.Provider>
+}
+
+export const useActivity = () => {
+  const context = useContext(ActivityContext);
+  if (!context) {
+    throw new Error("Need to have access to ActivityProvider to use.")
+  }
+  return context;
 }
