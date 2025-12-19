@@ -13,9 +13,15 @@ export async function getActivities() {
 }
 
 export const getActivityById = async (id) => {
-  const response = await fetch(API + `/activities/${id}`);
-  const activity = await response.json();
-  return activity;
+  try {
+    const response = await fetch(API + `/activities/${id}`);
+    const activity = await response.json();
+    return activity;
+  } catch (e) {
+    console.log(e)
+    return null;
+  }
+
 }
 
 /**
