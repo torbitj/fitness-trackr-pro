@@ -1,4 +1,4 @@
-import { act, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { getActivityById, deleteActivity } from "../api/activities";
 import { useAuth } from "../auth/AuthContext";
