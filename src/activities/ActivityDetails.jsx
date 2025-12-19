@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { getActivityById, deleteActivity } from "../api/activities";
 import { useAuth } from "../auth/AuthContext";
@@ -40,6 +40,7 @@ const ActivityDetails = () => {
         <>
           <h1>{activity.name.toUpperCase()}</h1>
           <p>{activity.description}</p>
+          <p>Created By {activity.creatorName}</p>
           {token && <button onClick={tryDelete}>Delete</button>}
           {error && <p role="alert">{error}</p>}
         </>
