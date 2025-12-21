@@ -11,7 +11,7 @@ export const getRoutines = async () => {
   }
 }
 
-export const getRoutineByID = async (id) => {
+export const getRoutineById = async (id) => {
   try {
     const response = await fetch(API + `/routines/${id}`);
     const routine = await response.json();
