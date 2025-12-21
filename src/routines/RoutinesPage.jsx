@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getRoutines } from "../api/routines";
 import { useAuth } from "../auth/AuthContext";
+import RoutinesList from "./RoutinesList"
+
 
 const RoutinesPage = () => {
   const { token } = useAuth();
@@ -18,7 +20,7 @@ const RoutinesPage = () => {
   return (
     <>
       <h1>Routines</h1>
-      <RoutinesList routines={routines} syncRoutines={syncRoutines} />
+      <RoutinesList routines={routines} />
       {token && <RoutinesForm syncRoutines={syncRoutines} />}
     </>
   )
