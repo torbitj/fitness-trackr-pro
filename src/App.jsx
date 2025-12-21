@@ -2,9 +2,11 @@ import { Route, Routes } from "react-router";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import ActivitiesPage from "./activities/ActivitiesPage";
+import RoutinesPage from "./routines/RoutinesPage.jsx";
 import Error404 from "./Error404.jsx";
 import Layout from "./layout/Layout.jsx"
 import ActivityDetails from "./activities/ActivityDetails.jsx";
+import Routine from "./routines/Routine.jsx";
 
 
 /**
@@ -17,9 +19,11 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<ActivitiesPage />} />
+        <Route path="/routines" element={<RoutinesPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/activities/:id" element={<ActivityDetails />} />
+        <Route path="/routines/:id" element={<Routine />} />
         <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>
