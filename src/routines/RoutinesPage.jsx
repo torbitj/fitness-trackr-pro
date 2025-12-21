@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getRoutines } from "../api/routines";
 import { useAuth } from "../auth/AuthContext";
 import RoutinesList from "./RoutinesList"
+import RoutinesForm from "./RoutinesForm";
 
 
 const RoutinesPage = () => {

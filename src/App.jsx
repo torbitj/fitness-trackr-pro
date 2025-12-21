@@ -6,6 +6,7 @@ import RoutinesPage from "./routines/RoutinesPage.jsx";
 import Error404 from "./Error404.jsx";
 import Layout from "./layout/Layout.jsx"
 import ActivityDetails from "./activities/ActivityDetails.jsx";
+import Routine from "./routines/Routine.jsx";
 
 
 /**
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/activities/:id" element={<ActivityDetails />} />
+        <Route path="/routines/:id" element={<Routine />} />
         <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>

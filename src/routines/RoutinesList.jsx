@@ -18,7 +18,7 @@ const RoutinesList = ({ routines }) => {
 const RoutinesListItem = ({ routine }) => {
   return (
     <li>
-      <Link to={"routines/" + routine.id} >
+      <Link to={"/routines/" + routine.id} >
         <p>{routine.name}</p>
       </Link>
     </li>
