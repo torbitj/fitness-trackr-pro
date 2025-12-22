@@ -14,6 +14,10 @@ const Routine = () => {
     setRoutine(routineData)
   }
 
+  const tryDeleteRoutine = async () => {
+
+  }
+
   useEffect(() => {
     getRoutine()
   }, [])
@@ -34,9 +38,12 @@ const Routine = () => {
   )
 }
 
-const SetItem = ({set, token}) => {
+const SetItem = ({ set, token }) => {
+  const tryDeleteSet = async (setId) => {
+    
+  };
   return (
-    <li>{set.name} x {set.count} {token && <button>Delete</button>}</li>
+    <li>{set.name} x {set.count} {token && <button onClick={() => tryDeleteSet(set.id)}>Delete</button>}</li>
   )
 }
 
