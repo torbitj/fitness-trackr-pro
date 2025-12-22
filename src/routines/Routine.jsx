@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {useAuth} from "../auth/AuthContext"
 import { useParams } from "react-router";
 import { getRoutineById } from "../api/routines";
+import SetForm from "./SetForm";
 
 const Routine = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const Routine = () => {
       <p>{routine.goal}</p>
       <h2>Sets</h2>
       {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} />)}
-      <SetForm />
+      {token && <SetForm />}
     </>
   )
 }
