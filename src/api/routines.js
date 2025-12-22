@@ -53,3 +53,27 @@ export const createSet = async (token, set) => {
     throw new Error(result.message)
   }
 }
+
+export const deleteRoutine = async (token, id) => {
+  const response = await fetch(API + `/routines/${id}`, {
+    method: "DELETE",
+    headers: {Authorization: "Bearer " + token}
+  })
+
+  if (!response.ok) {
+    const result = await response.json();
+    throw new Error(result.message);
+  }
+}
+
+export const deleteSet = async (token, id) => {
+  const response = await fetch(API + `/sets/${id}`, {
+    method: "DELETE",
+    headers: {Authorization: "Bearer " + token}
+  })
+
+  if (!response.ok) {
+    const result = await response.json();
+    throw new Error(result.message);
+  }
+}
