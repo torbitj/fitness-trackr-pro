@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {useAuth} from "../auth/AuthContext"
 import { useParams } from "react-router";
-import { getRoutineById } from "../api/routines";
+import { deleteSet, getRoutineById } from "../api/routines";
 import SetForm from "./SetForm";
 
 const Routine = () => {
@@ -31,19 +31,31 @@ const Routine = () => {
       <p>Created by: {routine.creatorName}</p>
       <p>{routine.goal}</p>
       <h2>Sets</h2>
-      {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} />)}
+      {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} getRoutine={getRoutine} />)}
       {token && <button>Delete Routine</button>}
       {token && <SetForm routine={routine} getRoutine={getRoutine} />}
     </>
   )
 }
 
-const SetItem = ({ set, token }) => {
+const SetItem = ({ set, token, getRoutine }) => {
+  const [error, setError] = useState();
+
   const tryDeleteSet = async (setId) => {
-    
+    setError(null)
+
+    try {
+      await deleteSet(token, setId);
+      getRoutine();
+    } catch (e) {
+      setError(e.message)
+    }
   };
   return (
-    <li>{set.name} x {set.count} {token && <button onClick={() => tryDeleteSet(set.id)}>Delete</button>}</li>
+    <>
+      <li>{set.name} x {set.count} {token && <button onClick={() => tryDeleteSet(set.id)}>Delete</button>}</li>
+      {error && <p role="alert">{error}</p>}
+    </>
   )
 }
 
