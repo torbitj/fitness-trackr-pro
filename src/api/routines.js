@@ -37,3 +37,19 @@ export const createRoutine = async (token, routine) => {
     throw new Error(result.message);
   }
 }
+
+export const createSet = async (token, set) => {
+  const response = await fetch(API + "/sets", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(set)
+  })
+
+  if (!response.ok) {
+    const result = await response.json();
+    throw new Error(result.message)
+  }
+}
