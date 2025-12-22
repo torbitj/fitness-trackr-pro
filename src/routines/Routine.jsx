@@ -27,7 +27,7 @@ const Routine = () => {
       <p>{routine.goal}</p>
       <h2>Sets</h2>
       {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} />)}
-      {token && <SetForm />}
+      {token && <SetForm routine={routine} />}
     </>
   )
 }
