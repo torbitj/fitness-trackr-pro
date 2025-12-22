@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {useAuth} from "../auth/AuthContext"
 import { useParams } from "react-router";
 import { getRoutineById } from "../api/routines";
+import SetForm from "./SetForm";
 
 const Routine = () => {
   const { id } = useParams();
@@ -12,6 +13,7 @@ const Routine = () => {
     const routineData = await getRoutineById(id);
     setRoutine(routineData)
   }
+
   useEffect(() => {
     getRoutine()
   }, [])
@@ -26,14 +28,15 @@ const Routine = () => {
       <p>{routine.goal}</p>
       <h2>Sets</h2>
       {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} />)}
-      <SetForm />
+      {token && <button>Delete Routine</button>}
+      {token && <SetForm routine={routine} getRoutine={getRoutine} />}
     </>
   )
 }
 
 const SetItem = ({set, token}) => {
   return (
-    <li>{set.name} {token && <button>Delete</button>}</li>
+    <li>{set.name} x {set.count} {token && <button>Delete</button>}</li>
   )
 }
 

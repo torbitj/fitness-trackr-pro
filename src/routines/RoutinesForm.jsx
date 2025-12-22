@@ -2,18 +2,19 @@ import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { createRoutine } from "../api/routines";
 
-const RoutinesForm = () => {
+const RoutinesForm = ({syncRoutines}) => {
   const { token } = useAuth();
   const [error, setError] = useState();
 
   const tryCreateRoutine = async (formData) => {
     setError(null);
 
-    const routineName = formData.get("name");
+    const name = formData.get("name");
     const goal = formData.get("goal")
 
     try {
-      await createRoutine(token, {routineName, goal})
+      await createRoutine(token, { name, goal })
+      syncRoutines();
     } catch (e) {
       setError(e.message)
     }
