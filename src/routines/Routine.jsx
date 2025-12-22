@@ -23,14 +23,18 @@ const Routine = () => {
     <>
       <h1>{routine.name}</h1>
       <p>Created by: {routine.creatorName}</p>
+      <p>{routine.goal}</p>
       <h2>Sets</h2>
-      {routine.sets.map((set) => <SetItem key={set.id} set={set} />)}
+      {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} />)}
+      <SetForm />
     </>
   )
 }
 
-const SetItem = ({set}) => {
-  return <p>{set.name}</p>
+const SetItem = ({set, token}) => {
+  return (
+    <li>{set.name} {token && <button>Delete</button>}</li>
+  )
 }
 
 export default Routine;
