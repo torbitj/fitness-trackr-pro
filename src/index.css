@@ -42,6 +42,30 @@ ol {
   padding-left: 1rem;
 }
 
+ul {
+  list-style: none;
+  display: grid;
+  row-gap: 0.2em;
+}
+
+li {
+  padding: 0.3em;
+  background-color: ivory;
+  border: thin solid darkgrey;
+  border-radius: 10px;
+  font-size: 1.1em;
+}
+
+li a {
+  text-decoration: none;
+  color: black
+}
+
 p[role="alert"] {
   color: red;
+}
+
+.set {
+  background-color: inherit;
+  border: none;
 }

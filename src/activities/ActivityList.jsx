@@ -1,8 +1,6 @@
 import { Link } from "react-router";
 
 export default function ActivityList({ activities }) {
-  // if (!activities) return <p>Loading...</p>
-  console.log(activities)
   return (
     <ul>
       {activities.map((activity) => (
