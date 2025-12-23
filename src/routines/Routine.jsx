@@ -40,7 +40,9 @@ const Routine = () => {
       <p>Created by: {routine.creatorName}</p>
       <p>{routine.goal}</p>
       <h2>Sets</h2>
-      {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} getRoutine={getRoutine} />)}
+      <ul>
+        {routine.sets.map((set) => <SetItem key={set.id} token={token} set={set} getRoutine={getRoutine} />)}
+      </ul>
       {token && <button onClick={tryDeleteRoutine}>Delete Routine</button>}
       {error && <p role="alert">{error}</p>}
       {token && <SetForm routine={routine} getRoutine={getRoutine} />}
@@ -63,7 +65,7 @@ const SetItem = ({ set, token, getRoutine }) => {
   };
   return (
     <>
-      <li>{set.name} x {set.count} {token && <button onClick={() => tryDeleteSet(set.id)}>Delete</button>}</li>
+      <li className="set">{set.name} x {set.count} {token && <button onClick={() => tryDeleteSet(set.id)}>Delete</button>}</li>
       {error && <p role="alert">{error}</p>}
     </>
   )
